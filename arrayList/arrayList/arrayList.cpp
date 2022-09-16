@@ -17,13 +17,12 @@ void printArray(int *arr, int size)
 /**
  *	Shifts elements starting from the given position to the right.
  */
-void shiftArrayElements(int *arr, int start, int *end)
+void shiftArrayElements(int *arr, int start, int end)
 {
-	for (int i = *end - 1; i >= start; i--) // loop must run from the last element to the position
+	for (int i = end - 1; i >= start; i--) // loop must run from the last element to the position
 	{
 		arr[i + 1] = arr[i];
 	}
-	++*end;
 }
 
 /**
@@ -41,7 +40,8 @@ bool insertElement(int *arr, int element, int position, int *size, int N)
 	{
 		return false;
 	}
-	shiftArrayElements(arr, position, size);
+	shiftArrayElements(arr, position, *size);
+	++*size;
 	arr[position] = element;
 	std::cout << "Result size: " << *size << "\n";
 	return true;
